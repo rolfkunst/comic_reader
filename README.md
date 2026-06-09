@@ -1,2 +1,2 @@
 # comic_reader
-An Docker Comic Reader
+A Docker Comic Reader
