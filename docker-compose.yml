@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  panels:
+    build: .
+    container_name: panels-comic-reader
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - panels_data:/data        # SQLite DB + sessions
+      - panels_cache:/cache      # Extracted covers & pages
+      # Optional: mount comics directly from host instead of SMB
+      # - /path/to/your/comics:/comics:ro
+    environment:
+      - PORT=3000
+      - DATA_DIR=/data
+      - CACHE_DIR=/cache
+      # Uncomment to pre-set the local comics path (skip SMB setup):
+      # - COMICS_PATH=/comics
+
+volumes:
+  panels_data:
+  panels_cache:
